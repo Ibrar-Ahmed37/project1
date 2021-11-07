@@ -12,7 +12,7 @@ import { useTranslation, initReactI18next } from "react-i18next";
 
 function App() {
   const [currentLanguage, setCurrentLanguage] = React.useState('en')
-  const [isAuthenticated,setisAuthenticated]=React.useState(false)
+  const [isAuthenticated,setisAuthenticated]=React.useState(true)
   const translationsEn = {
     welcome: "Welcome ghgh!",
   };
@@ -42,16 +42,21 @@ function App() {
   const selectLang = (ln) => {
     setCurrentLanguage(ln)
   }
+  const checkLog=(val)=>
+  {
+    if(!isAuthenticated)
+        setisAuthenticated(val)
+  }
   return (
     <Router>
         <div className="App">
             <Navbar selectLanguage={selectLang} 
             />
             <Routes>
+              { isAuthenticated ?  <Route path="/cars"  element={<Cars checkLogin={checkLog}/>}  />    :null}
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" exact element={<Login/>} />
-                <Route path="/cars"  element={<Cars/>} />
-                <Route path="de/cars"  element={<DeCars/>} />              
+                              
             </Routes>
         </div>
     </Router>

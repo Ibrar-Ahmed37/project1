@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import "./css/Login.css";
 import validator from 'validator';
-function Login() {
+const Login=({checkLogin})=> {
     
    
     const nav = useNavigate();
-    const [emailError, setEmailError] = useState('')
         function handleClick(e) {
          
                   console.log("here");
@@ -33,7 +32,7 @@ function Login() {
             </Form.Group>
 
         
-            <Button variant="primary" className="w-100" type="submit" onSubmit={handleClick} >
+            <Button variant="primary" className="w-100" type="submit" onSubmit={handleClick} onClick={() => checkLogin(true)}>
                 Login
             </Button>
             </Form>
